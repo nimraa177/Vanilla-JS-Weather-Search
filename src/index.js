@@ -4,7 +4,6 @@ function refreshWeather(response) {
   temperatureElement.innerHTML = Math.round(temperature);
   let icon = document.querySelector("#current-temperature-icon");
   icon.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon"/>`;
-  debugger;
   let body = document.getElementById("body-des");
   body.className = "def-img";
 
