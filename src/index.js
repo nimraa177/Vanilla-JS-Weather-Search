@@ -2,6 +2,22 @@ function refreshWeather(response) {
   let temperatureElement = document.querySelector("#temperature");
   let temperature = response.data.temperature.current;
   temperatureElement.innerHTML = Math.round(temperature);
+  let icon = document.querySelector("#current-temperature-icon");
+  icon.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon"/>`;
+  debugger;
+  let body = document.getElementById("body-des");
+  body.className = "def-img";
+
+  if (response.data.condition.description === "clear sky") {
+    body.className = "Clear-sky";
+  } else if (response.data.condition.description === "broken clouds") {
+    body.className = "Broken-sky";
+  } else if (response.data.condition.description === "overcast clouds") {
+    body.className = "Overcast-clouds";
+  } else if (response.data.condition.description === "scattered clouds") {
+    body.className = "Scatterded-clouds";
+  }
+
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.city;
   let descriptionElement = document.querySelector("#description");
