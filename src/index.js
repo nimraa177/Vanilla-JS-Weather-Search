@@ -4,6 +4,39 @@ function refreshWeather(response) {
   temperatureElement.innerHTML = Math.round(temperature);
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.city;
+  let descriptionElement = document.querySelector("#description");
+  descriptionElement.innerHTML = response.data.condition.description;
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = response.data.temperature.humidity;
+  let windElement = document.querySelector("#wind-speed");
+  windElement.innerHTML = response.data.wind.speed;
+  let timeElement = document.querySelector("#time");
+  //Parsing the date Sun Mar 17 2024 23:01:02 GMT-0500
+  let date = new Date(response.data.time * 1000);
+  timeElement.innerHTML = response.data.time;
+  //Sun Mar 17 2024 23:01:02 GMT-0500
+  timeElement.innerHTML = formatDate(date);
+
+  console.log(response.data);
+}
+//Function to format date
+function formatDate(date) {
+  let minutes = date.getMinutes();
+  let hours = date.getHours();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  return `${day} ${hours}:${minutes}`;
 }
 
 //function for search city
